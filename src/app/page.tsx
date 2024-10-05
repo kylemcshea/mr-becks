@@ -115,9 +115,9 @@ export default function Component() {
               for sleek, innovative devices.
             </p>
             <p className="text-lg">
-              When he's not exploring new vape juices or testing the latest
-              mods, you can find Ryan stargazing or discussing the wonders of
-              the cosmos with fellow space enthusiasts.
+              When hes not exploring new vape juices or testing the latest mods,
+              you can find Ryan stargazing or discussing the wonders of the
+              cosmos with fellow space enthusiasts.
             </p>
           </div>
         </section>
