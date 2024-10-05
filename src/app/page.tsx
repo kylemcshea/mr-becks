@@ -1,101 +1,171 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useState } from "react";
+import { Star, Menu, X, Instagram, Twitter, Mail } from "lucide-react";
+
+export default function Component() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="min-h-screen bg-gradient-to-b from-blue-900 to-purple-900 text-white font-['Montserrat']">
+      <header className="p-4 flex justify-between items-center">
+        <h1 className="text-2xl font-bold">Ryan Beckler</h1>
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="md:hidden"
+        >
+          {isMenuOpen ? <X /> : <Menu />}
+        </button>
+        <nav className={`${isMenuOpen ? "block" : "hidden"} md:block`}>
+          <ul className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4">
+            <li>
+              <a href="#home" className="hover:text-purple-300">
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="#products" className="hover:text-purple-300">
+                Products
+              </a>
+            </li>
+            <li>
+              <a href="#about" className="hover:text-purple-300">
+                About
+              </a>
+            </li>
+            <li>
+              <a href="#contact" className="hover:text-purple-300">
+                Contact
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+      <main>
+        <section
+          id="home"
+          className="h-screen flex items-center justify-center relative overflow-hidden"
+        >
+          <div className="absolute inset-0 overflow-hidden">
+            {[...Array(50)].map((_, i) => (
+              <Star
+                key={i}
+                className="absolute text-white opacity-70"
+                style={{
+                  top: `${Math.random() * 100}%`,
+                  left: `${Math.random() * 100}%`,
+                  animation: `twinkle ${Math.random() * 5 + 3}s infinite`,
+                }}
+              />
+            ))}
+          </div>
+          <div className="text-center z-10">
+            <h2 className="text-5xl md:text-7xl font-bold mb-4">
+              Ryan Beckler
+            </h2>
+            <p className="text-xl md:text-2xl mb-8">
+              Vaping Enthusiast & Connoisseur
+            </p>
+            <a
+              href="#products"
+              className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full transition duration-300"
+            >
+              Explore My Collection
+            </a>
+          </div>
+        </section>
+
+        <section id="products" className="py-16 px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
+            Featured Vape Products
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {["Cosmic Cloud", "Nebula Nectar", "Galactic Grape"].map(
+              (product) => (
+                <div
+                  key={product}
+                  className="bg-blue-800 bg-opacity-50 rounded-lg p-6 text-center"
+                >
+                  <img
+                    src={`/placeholder.svg?height=200&width=200`}
+                    alt={product}
+                    className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
+                  <h3 className="text-xl font-semibold mb-2">{product}</h3>
+                  <p className="text-purple-300">A stellar vaping experience</p>
+                </div>
+              )
+            )}
+          </div>
+        </section>
+
+        <section id="about" className="py-16 px-4 bg-purple-800 bg-opacity-30">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-8">About Ryan</h2>
+            <img
+              src="/placeholder.svg?height=200&width=200"
+              alt="Ryan Beckler"
+              className="w-48 h-48 rounded-full mx-auto mb-8"
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+            <p className="text-lg mb-6">
+              Ryan Beckler is a passionate vaping enthusiast with a taste for
+              the extraordinary. With years of experience in the vaping
+              community, Ryan has developed a keen sense for flavors and an eye
+              for sleek, innovative devices.
+            </p>
+            <p className="text-lg">
+              When he's not exploring new vape juices or testing the latest
+              mods, you can find Ryan stargazing or discussing the wonders of
+              the cosmos with fellow space enthusiasts.
+            </p>
+          </div>
+        </section>
+
+        <section id="contact" className="py-16 px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
+            Get in Touch
+          </h2>
+          <div className="flex justify-center space-x-8">
+            <a
+              href="#"
+              className="text-white hover:text-purple-300 transition duration-300"
+            >
+              <Instagram size={32} />
+            </a>
+            <a
+              href="#"
+              className="text-white hover:text-purple-300 transition duration-300"
+            >
+              <Twitter size={32} />
+            </a>
+            <a
+              href="mailto:ryan@example.com"
+              className="text-white hover:text-purple-300 transition duration-300"
+            >
+              <Mail size={32} />
+            </a>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      <footer className="bg-blue-900 bg-opacity-50 py-4 text-center">
+        <p>&copy; 2023 Ryan Beckler. All rights reserved.</p>
       </footer>
+
+      <style jsx global>{`
+        @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
+
+        @keyframes twinkle {
+          0%,
+          100% {
+            opacity: 0.7;
+          }
+          50% {
+            opacity: 0.3;
+          }
+        }
+      `}</style>
     </div>
   );
 }
